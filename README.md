@@ -160,6 +160,8 @@ The RPC methods currently implemented are:
 * [personal_newAccount](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_newAccount)
 * [personal_lockAccount](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_lockAccount)
 * [personal_listAccounts](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_listaccounts)
+* [personal_sign](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign)
+* [personal_ecRecover](https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_ecRecover)
 
 ## Custom Methods
 
