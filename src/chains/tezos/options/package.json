@@ -2,7 +2,7 @@
   "name": "@ganache/tezos-options",
   "version": "0.1.0",
   "description": "",
-  "author": "David Murdoch <david@trufflesuite.com> (https://davidmurdoch.com)",
+  "author": "Satyajeet Kolhapure <satyajeet.kolhapure@consensys.net>",
   "homepage": "https://github.com/trufflesuite/ganache-core/tree/develop/src/chains/tezos/options#readme",
   "license": "MIT",
   "main": "lib/index.js",
@@ -42,5 +42,9 @@
     "web3",
     "tooling",
     "truffle"
-  ]
+  ],
+  "dependencies": {
+    "@ganache/options": "0.1.0",
+    "seedrandom": "3.0.5"
+  }
 }
