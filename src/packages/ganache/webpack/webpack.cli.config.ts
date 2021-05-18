@@ -9,7 +9,15 @@ const config: webpack.Configuration = merge({}, base, {
   output: {
     path: path.resolve(__dirname, "../", "dist", "cli")
   },
-  externals: ["bigint-buffer", "leveldown", "secp256k1", "keccak"],
+  externals: [
+    "bigint-buffer",
+    "leveldown",
+    "secp256k1",
+    "keccak",
+    {
+      "@ganache/core": path.join("../", "node", "ganache.min.js")
+    }
+  ],
   plugins: [
     new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })
   ],
