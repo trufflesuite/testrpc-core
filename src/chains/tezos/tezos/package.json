@@ -2,7 +2,7 @@
   "name": "@ganache/tezos",
   "version": "0.1.0",
   "description": "Ganache's Tezos client implementation",
-  "author": "David Murdoch <david@trufflesuite.com> (https://davidmurdoch.com)",
+  "author": "Satyajeet Kolhapure <satyajeet.kolhapure@consensys.net>",
   "homepage": "https://github.com/trufflesuite/ganache-core/tree/develop/src/chains/tezos/tezos#readme",
   "license": "MIT",
   "main": "lib/index.js",
@@ -24,7 +24,10 @@
     "directory": "src/chains/tezos/tezos"
   },
   "scripts": {
-    "tsc": "ttsc --build"
+    "tsc": "ttsc --build && npm run copyassets",
+    "copyassets": "shx cp -r src/assets/ lib/src/assets/",
+    "test": "nyc --reporter lcov npm run mocha",
+    "mocha": "cross-env TS_NODE_COMPILER=ttypescript TS_NODE_FILES=true mocha --exit --check-leaks --throw-deprecation --trace-warnings --require ts-node/register 'tests/**/*.test.ts'"
   },
   "bugs": {
     "url": "https://github.com/trufflesuite/ganache-core/issues"
@@ -41,13 +44,30 @@
   ],
   "dependencies": {
     "@ganache/options": "0.1.0",
+    "@ganache/tezos-options": "0.1.0",
+    "@ganache/tezos-utils": "0.1.0",
     "@ganache/utils": "0.1.0",
-    "emittery": "0.7.2"
+    "@taquito/taquito": "8.0.4-beta.0",
+    "@types/bs58check": "2.1.0",
+    "@types/libsodium-wrappers": "0.7.9",
+    "@types/reflect-metadata": "0.1.0",
+    "bs58check": "2.1.2",
+    "emittery": "0.7.2",
+    "fp-ts": "2.10.5",
+    "io-ts": "2.2.16",
+    "io-ts-extra": "0.11.4",
+    "io-ts-types": "0.5.16",
+    "libsodium-wrappers": "0.7.9",
+    "monocle-ts": "2.3.10",
+    "newtype-ts": "0.3.4",
+    "reflect-metadata": "0.1.13",
+    "seedrandom": "3.0.5"
   },
   "devDependencies": {
     "@trufflesuite/typedoc-default-themes": "0.6.1",
     "cheerio": "1.0.0-rc.3",
     "local-web-server": "4.2.1",
+    "shx": "0.3.3",
     "typedoc": "0.17.8",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v18.4.0"
   }
