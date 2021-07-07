@@ -3,7 +3,7 @@
   "author": "David Murdoch <david@trufflesuite.com> (https://davidmurdoch.com)",
   "private": true,
   "engines": {
-    "node": ">=10.7.0 <=14.16.0",
+    "node": ">=10.13.0 <=14.16.0",
     "npm": ">=6.4.1"
   },
   "scripts": {
@@ -16,9 +16,9 @@
     "reinstall": "npm run clean && npm install",
     "start": "lerna exec --loglevel=silent --scope ganache -- npm run start --silent -- ",
     "test": "lerna exec --concurrency 1 -- npm run test",
-    "tsc": "ttsc --build src",
-    "tsc.clean": "npx lerna exec -- npx shx rm -rf lib dist",
-    "tsc.filecoin.declarations": "lerna run tsc.declarations --scope @ganache/filecoin && pretty-quick src/chains/filecoin/types"
+    "tsc": "ttsc --build src && ts-node ./src/packages/ganache/webpack/bundle-types.ts",
+    "tscd": "lerna run --scope @ganache/core 'ttsc --declaration --emitDeclarationOnly'",
+    "tsc.clean": "npx lerna exec -- npx shx rm -rf lib dist typings"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "1.0.1",

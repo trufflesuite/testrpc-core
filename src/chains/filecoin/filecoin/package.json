@@ -10,8 +10,7 @@
     "npm": ">=6.4.1"
   },
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "source": "index.ts",
+  "typings": "typings",
   "directories": {
     "lib": "lib",
     "test": "tests"
@@ -31,7 +30,6 @@
   "scripts": {
     "build": "webpack",
     "tsc": "ttsc --build",
-    "tsc.declarations": "ttsc --build tsconfig.declarations.json",
     "test": "ts-node ../../../../scripts/skip-if-less-than-node-12.ts || nyc --reporter lcov npm run mocha",
     "mocha": "ts-node ../../../../scripts/skip-if-less-than-node-12.ts || cross-env TS_NODE_COMPILER=ttypescript TS_NODE_FILES=true TS_NODE_PROJECT=tsconfig.test.json mocha --timeout 60000 --no-parallel --exit --check-leaks --throw-deprecation --trace-warnings --require ts-node/register 'tests/**/*.test.ts'"
   },
@@ -60,7 +58,6 @@
     "@filecoin-shipyard/lotus-client-rpc": "0.2.0",
     "@filecoin-shipyard/lotus-client-schema": "2.0.0",
     "@ganache/filecoin-options": "0.1.3",
-    "@ganache/options": "0.1.0",
     "@ganache/utils": "0.1.0",
     "@trufflesuite/uws-js-unofficial": "18.14.0-unofficial.3",
     "@types/bn.js": "5.1.0",
