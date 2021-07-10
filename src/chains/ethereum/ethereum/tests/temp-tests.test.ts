@@ -201,7 +201,7 @@ describe("Random tests that are temporary!", () => {
 
     const storage = await p.send("eth_getStorageAt", [
       receipt.contractAddress,
-      0,
+      "0x0",
       receipt.blockNumber
     ]);
     assert.strictEqual(storage, "0x05");
@@ -224,14 +224,14 @@ describe("Random tests that are temporary!", () => {
 
     const storage2 = await p.send("eth_getStorageAt", [
       receipt.contractAddress,
-      0,
+      "0x0",
       txReceipt.blockNumber
     ]);
     assert.strictEqual(storage2, "0x19");
   });
 
   it("transfers value", async () => {
-    const p = await getProvider({ miner: { gasPrice: 0 } });
+    const p = await getProvider({ miner: { defaultGasPrice: 0 } });
     const accounts = await p.send("eth_accounts");
     const ONE_ETHER = utils.WEI;
     const options = p.getOptions();
