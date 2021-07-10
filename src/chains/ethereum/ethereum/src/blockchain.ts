@@ -15,6 +15,8 @@ import {
   StorageRangeResult,
   StorageRecords,
   RangedStorageKeys,
+  StructLog,
+  TransactionTraceOptions,
   EthereumRawAccount
 } from "@ganache/ethereum-utils";
 import { decode } from "@ganache/rlp";
@@ -78,24 +80,6 @@ type BlockchainTypedEvents = {
   pendingTransaction: RuntimeTransaction;
 };
 type BlockchainEvents = "ready" | "stop";
-
-export type TransactionTraceOptions = {
-  disableStorage?: boolean;
-  disableMemory?: boolean;
-  disableStack?: boolean;
-};
-
-export type StructLog = {
-  depth: number;
-  error: string;
-  gas: number;
-  gasCost: number;
-  memory: Array<ITraceData>;
-  op: string;
-  pc: number;
-  stack: Array<ITraceData>;
-  storage: TraceStorageMap;
-};
 
 interface Logger {
   log(message?: any, ...optionalParams: any[]): void;
@@ -1309,10 +1293,10 @@ export default class Blockchain extends Emittery.Typed<
    * @param maxResult
    */
   public async storageRangeAt(
-    blockHash: string | Buffer,
+    blockHash: string,
     txIndex: number,
     contractAddress: string,
-    startKey: string | Buffer,
+    startKey: string,
     maxResult: number
   ): Promise<StorageRangeResult> {
     // #1 - get block information
@@ -1320,7 +1304,7 @@ export default class Blockchain extends Emittery.Typed<
 
     // get transaction using txIndex
     const transactions = targetBlock.getTransactions();
-    const transaction = transactions[Quantity.from(txIndex).toNumber()];
+    const transaction = transactions[txIndex];
     if (!transaction) {
       throw new Error(
         `transaction index ${txIndex} is out of range for block ${blockHash}`

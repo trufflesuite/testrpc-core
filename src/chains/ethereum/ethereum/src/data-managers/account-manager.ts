@@ -1,5 +1,5 @@
+import { Account, EthereumRawAccount, QUANTITY, Tag } from "@ganache/ethereum-utils";
 import { KECCAK256_NULL } from "ethereumjs-util";
-import { Account, EthereumRawAccount, Tag } from "@ganache/ethereum-utils";
 import { utils, Quantity, Data } from "@ganache/utils";
 import { Address } from "@ganache/ethereum-address";
 import { decode } from "@ganache/rlp";
@@ -56,7 +56,7 @@ export default class AccountManager {
 
   public async getNonce(
     address: Address,
-    blockNumber: Buffer | Tag = Tag.LATEST
+    blockNumber: QUANTITY | Buffer | Tag = Tag.LATEST
   ): Promise<Quantity> {
     const data = await this.getRaw(address, blockNumber);
 
@@ -68,7 +68,7 @@ export default class AccountManager {
 
   public async getBalance(
     address: Address,
-    blockNumber: Buffer | Tag = Tag.LATEST
+    blockNumber: QUANTITY | Buffer | Tag = Tag.LATEST
   ): Promise<Quantity> {
     const data = await this.getRaw(address, blockNumber);
 
@@ -80,7 +80,7 @@ export default class AccountManager {
 
   public async getCode(
     address: Address,
-    blockNumber: string | Buffer | Tag = Tag.LATEST
+    blockNumber: QUANTITY | Buffer | Tag = Tag.LATEST
   ): Promise<Data> {
     const data = await this.getRaw(address, blockNumber);
 
